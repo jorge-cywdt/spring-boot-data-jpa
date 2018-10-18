@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"> <!-- Etiqueta Thymeleaf -->
+<head th:replace="layout/layout :: head"></head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	
+	<div class="container">
+        <div class="row justify-content-center mt-3 pt-2"> <!-- mt-5 pt5 -->
+            <div class="col-md-12"> <!-- col-md-7 -->
+            
+            	<div class="card bg-light">
+            		<div class="card-header" th:text="Clientes"></div>
+            		<div class="card-body">
+					
+						<table class="table table-striped table-bordered"> <!-- <table class="table table-striped table-bordered table-hover table-responsive"> -->
+							<thead class="thead-dark">
+								<tr>
+									<th>ID</th>
+									<th>Nombre</th>
+									<th>Apellido</th>
+									<th>Email</th>
+									<th>Fec. Registro</th>
+									<th>Crear Factura</th>
+									<th>Editar</th>	
+									<th>Eliminar</th>					
+								</tr>						
+							</thead>					
+							<tbody>						
+								<tr th:each="cliente: ${cliente}">
+									<td><a class="btn btn-primary btn-sm" th:href="@{/ver/} + ${cliente.id}" th:text="${cliente.id}">1</a></td>
+									<td th:text="${cliente.nombre}">Carlos Arturo</td>
+									<td th:text="${cliente.apellido}">22</td>
+									<td th:text="${cliente.email}">México</td>
+									<td th:text="${cliente.createAt}">KKK</td>
+									<td><a class="btn btn-success btn-sm" th:href="@{/venta/form/} + ${cliente.id}" th:text="'Crear Factura'"></a></td>
+									<td><a class="btn btn-primary btn-sm" th:href="@{/form/} + ${cliente.id}" th:text="Editar"></a></td>
+									<td><a class="btn btn-danger btn-sm" th:href="@{/eliminar/} + ${cliente.id}" th:text="Eliminar" onclick="return confirm('Estas seguro que quieres eliminar?');"></a></td>						
+								</tr>
+							</tbody>					
+						</table>
+						<nav th:replace="layout/pageableNav :: nav"></nav>
+						<h4>
+							<a class="btn btn-primary" th:href="@{/form}">Crear Cliente</a>
+						</h4>
+						
+            		</div>
+            	</div>
+
+				<footer th:replace="layout/layout :: footer"></footer>
+
+			</div><!-- .col -->
+		</div><!-- .row -->	
+	</div><!-- .container -->
+	
+	<div th:replace="layout/layout :: cdn"></div>
+</body>
+</html>

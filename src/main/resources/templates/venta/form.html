@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"> <!-- Etiqueta Thymeleaf -->
+<head th:replace="layout/layout :: head"></head>
+<body>
+	<header th:replace="layout/layout :: header"></header>		
+	
+	<div class="container">
+        <div class="row justify-content-center mt-3 pt-2"> <!-- mt-5 pt5 -->
+            <div class="col-md-12"> <!-- col-md-7 -->
+            	
+            	<div class="card bg-light">
+            		<div class="card-header" th:text="Ventas"></div>
+            		<div class="card-body">
+            			
+            			<form th:action="@{/venta/form}" th:object="${venta}" method="post" id="formulario" enctype="multipart/form-data"> <!-- novalidate -->
+		                    <div class="row form-group">
+		                        <label for="cliente" class="col-form-label col-md-2">Cliente:</label> <!-- col-md-4 -->
+		                        <div class="col-md-5"> <!-- col-md-8 -->
+		                            <input type="text" name="cliente" th:value="${venta.cliente.nombre} + ' ' + ${venta.cliente.apellido}" id="cliente" class="form-control" disabled="disabled"> <!-- required -->		                            
+		                        </div>
+		                    </div>		                    
+		                    <div class="row form-group">
+		                        <label for="descripcion" class="col-form-label col-md-2">Descripci&oacute;n:</label>
+		                        <div class="col-md-5">
+		                            <input type="text" name="descripcion" value="" id="descripcion" class="form-control" th:field="*{descripcion}"> <!-- required -->		                            
+		                        </div>		                       
+		                    </div>
+		                    <div class="row form-group">
+		                        <label for="observacion" class="col-form-label col-md-2">Observaci&oacute;n:</label>
+		                        <div class="col-md-5">
+		                            <textarea name="observacion" id="observacion" class="form-control" th:field="*{observacion}"></textarea> <!-- required --> <!-- value="", no es un atributo definido en textarea -->
+		                        </div>		                        
+		                    </div>
+		                    <div class="row form-group">
+		                        <label for="buscarProducto" class="col-form-label col-md-2">Buscar Producto:</label>
+		                        <div class="col-md-5">
+		                            <input type="text" name="buscarProducto" value="" id="buscarProducto" class="form-control"> <!-- required -->		                            
+		                        </div>		                       
+		                    </div>
+		                    <h4>
+		                		<button type="submit" class="btn btn-secondary">Crear Factura</button>
+		                		<a class="btn btn-secondary" th:href="@{/listar}">Atras</a>
+		                	</h4>                    
+		                	
+		                	<!-- <input type="hidden" name="id" value="" id="id" class="form-control" th:field="*{id}"> -->
+		                </form>
+            		
+            		</div>
+            	</div>
+                
+                <footer th:replace="layout/layout :: footer"></footer>
+                
+            </div><!-- .col -->
+        </div><!-- .row -->
+    </div><!-- .container -->
+	
+	<div th:replace="layout/layout :: cdn"></div>
+	
+	<script type="text/javascript" th:replace="venta/js/autocompleteProductos :: javascript"></script>
+</body>
+</html> 

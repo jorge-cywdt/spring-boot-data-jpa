@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"> <!-- Etiqueta Thymeleaf -->
+<head th:replace="layout/layout :: head"></head>
+<body>
+	<header th:replace="layout/layout :: header"></header>	
+	
+	<div class="container">
+        <div class="row justify-content-center mt-3 pt-2"> <!-- mt-5 pt5 -->
+            <div class="col-md-12"> <!-- col-md-7 -->
+    			
+    			<div class="card bg-light">
+            		<div class="card-header" th:text="'Detalle cliente: ' + ${cliente.nombre}"></div>
+            		<div class="card-body">
+            		
+            			<h4>
+            				<a class="btn btn-success" th:href="@{/venta/form/} + ${cliente.id}">Crear Factura</a>
+            				<a class="btn btn-success" th:href="@{/listar}">Atras</a>
+						</h4>
+            		
+            			<img th:if="${#strings.length(cliente.foto) > 0}" class="img-thumbnail rounded float-left" th:src="@{'/uploads/' + ${cliente.foto}}" th:alt="${cliente.foto}"></img>
+            			<ul class="list-group">
+            				<li class="list-group-item list-group-item-success" th:text="${cliente.nombre}"></li>
+            				<li class="list-group-item" th:text="${cliente.apellido}"></li>
+            				<li class="list-group-item" th:text="${cliente.email}"></li>
+            				<li class="list-group-item" th:text="${cliente.createAt}"></li>            				          	
+            			</ul>
+            			            			
+            			<div th:if="${#lists.isEmpty(cliente.listVenta)}" class="alert alert-info my-4" th:text="'No hay facturas asignada para el cliente ' + ${cliente.nombre} + ' ' + ${cliente.apellido}"></div> <!-- Si la lista esta vacia entonces mostramos el mensaje -->
+            			<table th:if="not ${#lists.isEmpty(cliente.listVenta)}" class="table table-striped table-bordered my-4"> <!-- Si la lista esta vacia entonces no mostramos la tabla -->
+							<thead class="thead-dark">
+								<tr>
+									<th>ID</th>
+									<th>Descripci&oacute;n</th>
+									<th>Observaci&oacute;n</th>									
+									<th>Fec. Registro</th>
+									<th>Total</th>				
+								</tr>						
+							</thead>																									
+							<tbody>						
+								<tr th:each="listVenta: ${cliente.listVenta}">									
+									<td th:text="${listVenta.id}">Carlos Arturo</td>
+									<td th:text="${listVenta.descripcion}">22</td>
+									<td th:text="${listVenta.observacion}">México</td>
+									<td th:text="${listVenta.createAt}">KKK</td>
+									<td th:text="${listVenta.total}"></td>									
+								</tr>
+							</tbody>					
+						</table>
+            			
+            		</div>
+            	</div>                    	
+	
+				<footer th:replace="layout/layout :: footer"></footer>
+
+			</div><!-- .col -->
+		</div><!-- .row -->	
+	</div><!-- .container -->
+	
+	<div th:replace="layout/layout :: cdn"></div>
+</body>
+</html>

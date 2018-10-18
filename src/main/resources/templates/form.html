@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"> <!-- Etiqueta Thymeleaf -->
+<head th:replace="layout/layout :: head"></head>
+<body>
+	<header th:replace="layout/layout :: header"></header>	
+	
+	<div class="container">
+        <div class="row justify-content-center mt-3 pt-2"> <!-- mt-5 pt5 -->
+            <div class="col-md-12"> <!-- col-md-7 -->
+            	
+            	<div class="card bg-dark text-white">
+            		<div class="card-header" th:text="Clientes"></div>
+            		<div class="card-body">
+		                
+		                <div th:object="${cliente}" th:remove="tag">
+							<ul class="alert alert-danger" th:if="${#fields.hasErrors('*')}" role="alert">						
+								<li class="small pt-0 mt-0" th:each="err:${#fields.errors('*')}" th:text="${err}"></li>
+							</ul>
+						</div>
+		                                
+		                <form th:action="@{/form}" th:object="${cliente}" method="post" id="formulario" enctype="multipart/form-data"> <!-- novalidate -->
+		                    <div class="row form-group">
+		                        <label for="nombre" class="col-form-label col-md-2">Nombre:</label> <!-- col-md-4 -->
+		                        <div class="col-md-5"> <!-- col-md-8 -->
+		                            <input type="text" name="nombre" value="" id="nombre" class="form-control" th:field="*{nombre}"> <!-- required -->		                            
+		                            <div class="text-danger small pt-0 mt-0" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
+		                        </div>		                       
+		                    </div>
+		                    <div class="row form-group">
+		                        <label for="apellido" class="col-form-label col-md-2">Apellido:</label>
+		                        <div class="col-md-5">
+		                            <input type="text" name="apellido" value="" id="apellido" class="form-control" th:field="*{apellido}"> <!-- required -->
+		                            <div class="text-danger small pt-0 mt-0" th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}"></div>
+		                        </div>		                        
+		                    </div>
+		                    <div class="row form-group">
+		                        <label for="email" class="col-form-label col-md-2">Email:</label>
+		                        <div class="col-md-5">
+		                            <input type="email" name="email" value="" id="email" class="form-control" th:field="*{email}"> <!-- required -->
+		                            <div class="text-danger small pt-0 mt-0" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+		                        </div>		                        
+		                    </div>
+		                    <div class="row form-group">
+		                        <label for="fecRegistro" class="col-form-label col-md-2">Fec. Registro:</label>
+		                        <div class="col-md-5">
+		                            <input type="date" name="fecRegistro" value="" id="fecRegistro" class="form-control" th:field="*{createAt}"> <!-- required -->
+		                            <div class="text-danger small pt-0 mt-0" th:if="${#fields.hasErrors('createAt')}" th:errors="*{createAt}"></div>
+		                        </div>		                        
+		                    </div>
+		                    <div class="row form-group">
+		                        <label for="file" class="col-form-label col-md-2">Foto:</label>
+		                        <div class="col-md-5">
+		                            <input type="file" name="file" id="file" class="form-control"> <!-- required --> <!-- value="", genera error -->
+		                        </div>		                        
+		                    </div>		                    		                    		                    		                    
+		                    <h4>
+		                		<button type="submit" class="btn btn-secondary">Crear Cliente</button>
+		                		<a class="btn btn-secondary" th:href="@{/listar}">Atras</a>
+		                	</h4>                    
+		                	
+		                	<input type="hidden" name="id" value="" id="id" class="form-control" th:field="*{id}">
+		                </form>
+						
+					</div>
+            	</div>
+                
+                <footer th:replace="layout/layout :: footer"></footer>
+                
+            </div><!-- .col -->
+        </div><!-- .row -->
+    </div><!-- .container -->
+	
+	<div th:replace="layout/layout :: cdn"></div>
+</body>
+</html>
