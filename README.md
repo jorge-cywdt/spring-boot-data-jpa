@@ -1,2 +1,2 @@
 # spring-boot-data-jpa
-Spring Framework 5- Creando web app de cero a experto (2018)
+Angular & Spring 5- Creando web app full-stack (Angular 7+)
