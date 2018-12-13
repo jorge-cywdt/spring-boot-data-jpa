@@ -27,6 +27,12 @@ public class clienteService implements clienteService_Interfaz {
 	
 	@Override
 	@Transactional(readOnly=true)
+	public Page<cliente> findAll(Pageable pageable) { // Page es muy parecido a List	
+		return clienteDao.findAll(pageable);
+	}
+	
+	@Override
+	@Transactional(readOnly=true)
 	public cliente findOne(Long id) {
 		return clienteDao.findById(id).orElse(null); //	return clienteDao.findOne(id);
 	}
@@ -41,11 +47,6 @@ public class clienteService implements clienteService_Interfaz {
 	@Transactional
 	public void delete(cliente obj) {
 		clienteDao.delete(obj);
-	}
-
-	@Override
-	public Page<cliente> findAll(Pageable pageable) { // Page es muy parecido a List	
-		return clienteDao.findAll(pageable);
-	}		
+	}	
 	
 }

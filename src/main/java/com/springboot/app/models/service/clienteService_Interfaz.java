@@ -11,12 +11,12 @@ public interface clienteService_Interfaz {
 	
 	public List<cliente> findAll();
 	
+	public Page<cliente> findAll(Pageable pageable);
+	
 	public cliente findOne(Long id);
 
 	public void save(cliente obj);
 	
 	public void delete(cliente obj);
-	
-	public Page<cliente> findAll(Pageable pageable);	
 	
 }
