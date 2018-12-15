@@ -2,8 +2,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"> <!-- Etiqueta Thymeleaf -->
 <body>
 
-	<nav th:fragment="nav">
-		<ul class="pagination">
+	<nav th:fragment="nav" class="clearfix">
+		<ul class="pagination float-right">
 			<li class="page-item" th:class="${page.first? 'page-item disabled': 'page-item'}">
 				<span class="page-link" th:if="${page.first}">Primera</span> 
 				<a class="page-link" th:if="${not page.first}" th:href="@{${page.url}(page=0)}">Primera</a>
