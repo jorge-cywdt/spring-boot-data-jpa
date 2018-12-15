@@ -57,7 +57,7 @@ public class clienteController {
 	@RequestMapping(value="/listar")
 	public String listar(@RequestParam(name="page", defaultValue="0") int page, Model model) {
 		
-		Pageable pageRequest = PageRequest.of(page, 5); // Migrado a Spring 5 // Antes de Spring 5, Pageable pageRequest = new PageRequest(page, 4);
+		Pageable pageRequest = PageRequest.of(page, 5); // Migrado a Spring 5 // Antes de Spring 5, Pageable pageRequest = new PageRequest(page, 5);
 		Page<cliente> objPag = clienteService.findAll(pageRequest);		
 		model.addAttribute("titulo", "Mantenimiento de Clientes");
 		model.addAttribute("cliente", objPag);
@@ -68,7 +68,7 @@ public class clienteController {
 		return "listar";
 		
 		/*
-		model.addAttribute("titulo", titulo);
+		model.addAttribute("titulo", "Mantenimiento de Clientes");
 		model.addAttribute("cliente", clienteService.findAll());
 		return "listar";
 		*/

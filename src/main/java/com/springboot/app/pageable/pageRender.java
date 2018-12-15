@@ -24,20 +24,17 @@ public class pageRender<T> {
 		paginaActual = page.getNumber() + 1;
 		
 		int desde, hasta;
-		if(totalPaginas <= numeroElementosPorPagina) {
+		if (totalPaginas <= numeroElementosPorPagina) {
 			desde = 1;
 			hasta = totalPaginas;
-		} 
-		else {
-			if(paginaActual <= numeroElementosPorPagina / 2) {
+		} else {
+			if (paginaActual <= numeroElementosPorPagina / 2) {
 				desde = 1;
 				hasta = numeroElementosPorPagina;
-			} 
-			else if(paginaActual >= totalPaginas - numeroElementosPorPagina / 2) {
+			} else if(paginaActual >= totalPaginas - numeroElementosPorPagina / 2) {
 				desde = totalPaginas - numeroElementosPorPagina + 1;
 				hasta = numeroElementosPorPagina;
-			} 
-			else {
+			} else {
 				desde = paginaActual -numeroElementosPorPagina / 2;
 				hasta = numeroElementosPorPagina;
 			}
