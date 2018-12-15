@@ -58,12 +58,12 @@ public class clienteController {
 	public String listar(@RequestParam(name="page", defaultValue="0") int page, Model model) {
 		
 		Pageable pageRequest = PageRequest.of(page, 5); // Migrado a Spring 5 // Antes de Spring 5, Pageable pageRequest = new PageRequest(page, 5);
-		Page<cliente> objPag = clienteService.findAll(pageRequest);		
+		Page<cliente> objCli = clienteService.findAll(pageRequest);		
 		model.addAttribute("titulo", "Mantenimiento de Clientes");
-		model.addAttribute("cliente", objPag);
+		model.addAttribute("cliente", objCli); // Pasamos cliente a la vista
 		
-		pageRender<cliente> objPagRen = new pageRender<>("/listar", objPag); // pageRender es una clase que se encuentra en el paquete com.springboot.app.pageable
-		model.addAttribute("page", objPagRen);
+		pageRender<cliente> objPagRen = new pageRender<>("/listar", objCli); // pageRender es una clase que se encuentra en el paquete com.springboot.app.pageable
+		model.addAttribute("page", objPagRen); // Pasamos page a la vista
 		
 		return "listar";
 		
